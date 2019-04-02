@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css" />
+  <title>Character Sheets</title>
+</head>
+
+<body>
+	<div class="header">
+		<div class="title">
+		<h1>Pioneers and Patriots: Character Builder</h1>
+		</div>
+	</div>
+	<div id="admin" class="content">
+
+
+     <div class="heading">
+        <div class="circle">1</div>
+         <h2 class="headBox">Create a Character</h2>
+		</div>
+	         <div class="add">
+			 <div class="form"> 
+			 <div class="headBox">
+			       <p> Player Name: </p> <input v-model="playerName" placeholder="Your Name">
+			 </div>
+			 <p></p> <br>
+			       <div class="headBox">
+			       <h3><u>Character Info:</u> </h3>
+			       <p> Character Name:</p> <input v-model="charName" placeholder="Their Name">
+			       <p></p>
+			       
+			       <p> Character Photo:</p> <input type="file" name="photo" @change="fileChanged">
+			       <p></p>
+			       <p> Age:</p> <input v-model="age" size="5" type="number" placeholder="Age">
+			       <p></p>
+			       <p><button class="genderBox" v-on:click="genderPickMale"><img class="gender" src="http://clipart-library.com/images/dc9KK69Ri.png"></button>
+			       <button class="genderBox" v-on:click="genderPickFemale"><img class="gender" src="http://clipart-library.com/img1/850236.gif"></button>Gender: {{gender}} </p>
+			       <p> Class:</p> <input v-model="charClass" placeholder="Character Class">
+			       </div>
+			       <p></p> <br>
+			       <div class="headBox">
+			       <h3><u>Core Attributes:</u></h3> 
+			       <button v-on:click="rollHeart">Roll Heart Score</button>
+			       <input size="5" v-model="heart" type="number" placeholder="Heart Score">
+			       <p></p>
+			       <button v-on:click="rollMight">Roll Might Score</button>
+			       <input size="5" v-model="might" type="number" placeholder="Might Score">
+			       <p></p>
+			       <button v-on:click="rollMind">Roll Mind Score</button>
+			       <input size="5" v-model="mind" type="number" placeholder="Mind Score">
+			       <p></p>
+			       
+			       <button v-on:click="rollStrength">Roll Strength Score</button>
+			       <input class="intInput" v-model="strength" type="number" placeholder="Strength Score">
+			       <p>Faith Score: {{faith}}</p>
+			 
+			       <button @click="upload">Upload</button>
+			       </div>
+	             </div>
+	      
+		     
+		   <div class="upload" v-if="addItem">
+		           <h2>{{addItem.title}}</h2>
+		           <img :src="addItem.path" />
+	       
+		     
+		 </div>  
+		     </div>
+  
+     <div class="heading">
+	     <div class="circle">2</div>
+	     
+	     <h2 class="headBox">Edit/Delete an Item</h2>
+	     
+     </div>
+     <div class="edit headBox">
+	     <div class="form">
+		     <input v-model="findName" placeholder="Search">
+		     <div class="suggestions" v-if="suggestions.length > 0">
+			     <div class="suggestion" v-for="s in suggestions" @click="selectItem(s)">{{s.playerName}}
+			     </div>
+		     </div>
+	     </div>
+	     <div class="upload headBox" v-if="findItem">
+		     <p> <u>Edit:</u> <br> <br> Name:<br> <input v-model="findItem.charName"> </p> 
+		     <p> heart: <input v-model="findItem.heart" type="number"></p>
+		     <p> might: <input v-model="findItem.might" type="number"></p>
+	             <p>mind:  <input v-model="findItem.mind" type="number"></p>
+		     <p>strength: <input v-model="findItem.strength" type="number"></p>
+		     <p></p>
+		     <img :src="findItem.path" />
+	     </div>
+	     <div class="actions" v-if="findItem">
+		     <button @click="deleteItem(findItem)">Delete</button>
+		     <button @click="editItem(findItem)">Edit</button>
+
+	     </div>
+     </div>
+	</div>
+
+  <div class="footer">
+	  <a href="/index.html">Back to Gallery</a> <br>
+   <a href="https://github.com/SeaSaltSunset/creative4">Link to Github Repository</a>
+  
+  </div>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.7/vue.js" integrity="sha256-g+Q8DFAmG5+eyRPSydX0LY4TfjsL11XSDrIGerbbEdA=" crossorigin="anonymous"></script>
+  <script src="/admin.js"></script>
+</body>
+
+</html>
